@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #555;
+        }
+
+        header {
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .main-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .nav {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        .nav li {
+            margin-left: 20px;
+        }
+
+        .nav li a {
+            text-decoration: none;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .nav li a:hover,
+        .nav li a.active {
+            background-color: #555;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .register-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .register-container h2 {
+            margin-bottom: 20px;
+        }
+
+        .register-container form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .register-container label {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .register-container input {
+            padding: 10px;
+            margin-top: 5px;
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .register-container button {
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .register-container button:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 768px) {
+            .main-nav {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav li {
+                margin-left: 0;
+                margin-bottom: 10px;
+            }
+
+            .nav li a {
+                padding: 10px;
+            }
+
+            .register-container {
+                width: 90%;
+                padding: 20px;
+            }
+
+            .register-container input,
+            .register-container button {
+                width: calc(100% - 20px);
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="index.html" class="logo">
+                            Clothing Store
+                        </a>
+                        <ul class="nav">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="index.html">Men</a></li>
+                            <li><a href="index.html">Women</a></li>
+                            <li><a href="index.html">Kids</a></li>
+                            <li><a href="contact.html" >Contact</a></li>
+                            <li><a href="login.html" class="btn">Login</a></li>
+                            <li><a href="reg.html" class="btn">Register</a></li>
+                            <li><a href="cart.html" onclick="showCart()">Cart <span id="cart-count"></span></a></li>
+                        </ul>        
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="register-container">
+        <h2>Register</h2>
+        <form id="registerForm">
+            <label for="name">Name
+                <input type="text" id="name" name="name" placeholder="Name" required>
+            </label>
+            <label for="email">Email
+                <input type="email" id="email" name="email" placeholder="Email" required>
+            </label>
+            <label for="phone">Phone Number
+                <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
+            </label>
+            <label for="state">State
+                <input type="text" id="state" name="state" placeholder="State" required>
+            </label>
+            <label for="password">Password
+                <input type="password" id="password" name="password" placeholder="Password" required>
+            </label>
+            <label for="confirm-password">Confirm Password
+                <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required>
+            </label>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const state = document.getElementById('state').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match.');
+                return;
+            }
+
+            // Add logic to handle registration (e.g., send data to the server)
+
+            alert('Registration successful! Please log in.');
+            window.location.href = 'login.html';
+        });
+    </script>
+</body>
+</html>

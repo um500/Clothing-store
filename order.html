@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Received</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #555;
+        }
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 90%;
+            border-radius: 8px;
+        }
+        .container h1 {
+            margin: 0 0 20px;
+            font-size: 30px;
+            color: #333;
+            font-weight: bold;
+        }
+        .container p {
+            margin: 0 0 20px;
+            font-size: 20px;
+            color: #666;
+        }
+        .go-home-btn {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .go-home-btn:hover {
+            background-color: #45a049;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            .container h1 {
+                font-size: 24px;
+            }
+            .container p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Order Received</h1>
+        <p id="order-id">Order ID: <span id="dynamic-order-id"></span></p>
+        <button class="go-home-btn" onclick="window.location.href = 'index.html';">Go to Home</button>
+    </div>
+
+    <script>
+        // Generate a random order ID
+        function generateOrderId() {
+            var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            var orderId = '';
+            for (var i = 0; i < 20; i++) {
+                orderId += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            return orderId;
+        }
+
+        // Update the order ID text with a new generated ID
+        function updateOrderId() {
+            var orderId = generateOrderId();
+            document.getElementById('dynamic-order-id').innerText = orderId;
+        }
+
+        // Call updateOrderId function when the page loads
+        window.onload = updateOrderId;
+    </script>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column; /* Stack header and form vertically */
+            align-items: center;
+            min-height: 100vh;
+            background-color: #555; /* Set background color */
+        }
+
+        header {
+            width: 100%;
+            background-color: #333; /* Example header background color */
+            color: #fff;
+            padding: 10px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .main-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .nav {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        .nav li {
+            margin-left: 20px;
+        }
+
+        .nav li a {
+            text-decoration: none;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .nav li a:hover,
+        .nav li a.active {
+            background-color: #555;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .login-container {
+            background-color: #fff; /* Form background color */
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 100%;
+            max-width: 400px; /* Max width for the form */
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        button,
+        .register-btn {
+            width: calc(100% - 20px); /* Adjust width to account for padding */
+            padding: 15px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 5px;
+            box-sizing: border-box;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        button {
+            background-color: #007bff; /* Button color */
+            color: #fff;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3; /* Button color on hover */
+        }
+
+        .register-btn {
+            background-color: #28a745; /* Register button color */
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .register-btn:hover {
+            background-color: #218838; /* Register button color on hover */
+        }
+
+        /* Transparent background on hover */
+        .login-container:hover {
+            background-color: rgba(85, 85, 85, 0.8); /* Adjust transparency */
+        }
+
+        /* Reset transparent background when not hovering */
+        .login-container:not(:hover) {
+            background-color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .main-nav {
+                flex-direction: column;
+            }
+
+            .nav {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav li {
+                margin-left: 0;
+                margin-bottom: 10px;
+            }
+
+            .nav li a {
+                padding: 10px;
+            }
+
+            .login-container {
+                padding: 20px;
+                width: 90%;
+            }
+
+            input[type="text"],
+            input[type="password"],
+            button,
+            .register-btn {
+                width: calc(100% - 10px); /* Adjust width to account for padding */
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="index.html" class="logo">
+                            Clothing Store
+                        </a>
+                        <ul class="nav">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="index.html">Men</a></li>
+                            <li><a href="index.html">Women</a></li>
+                            <li><a href="index.html">Kids</a></li>
+                            <li><a href="contact.html" >Contact</a></li>
+                            <li><a href="login.html" class="btn">Login</a></li>
+                            <li><a href="reg.html" class="btn">Register</a></li>
+                            <li><a href="cart.html" onclick="showCart()">Cart <span id="cart-count"></span></a></li>
+                        </ul>        
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <input type="text" id="username" name="username" placeholder="Username" required>
+            <input type="password" id="password" name="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+            <button class="register-btn" type="button" onclick="window.location.href='reg.html'"><a href="reg.html">Register</a></button>
+        </form>
+    </div>
+    
+    <script src="auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clothing Store</title>
+    <link rel="stylesheet" href="styles.css">
+<script>
+    function addToCart(productName, productPrice) {
+        const product = { name: productName, price: productPrice };
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.push(product);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartCount();
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+    const menuTrigger = document.querySelector('.menu-trigger');
+    const mainNav = document.querySelector('.main-nav');
+
+    menuTrigger.addEventListener('click', function() {
+        mainNav.classList.toggle('active');
+    });
+});
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+
+</head>
+<body>
+    
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="index.html" class="logo">
+                            Clothing Store
+                        </a>
+                        <ul class="nav">
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#men">Men</a></li>
+                            <li><a href="#women">Women</a></li>
+                            <li><a href="#kids">Kids</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="login.html" class="btn">Login</a></li>
+                            <li><a href="reg.html" class="btn">Register</a></li>
+                            <li><a href="cart.html" onclick="showCart()">Cart <span id="cart-count"></span></a></li>
+                        </ul>        
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <section id="home">
+            <div class="container">
+                <img src="./image/1.jpg" alt="Welcome Image">
+                <div class="text-overlay">
+                    <h2>Our Clothing Store</h2>
+                    <p>Find the best clothes for men, women, and kids.</p>
+                </div>
+            </div>
+        </section>        
+        
+        <section id="men" class="product-list">
+            <div class="container">
+                <!-- <h2>Men's Collection</h2> -->
+                <div class="product">
+                    <img src="./image/men/1th.jpg" alt="Men's Product 1">
+                    <h2>Traditional dress for men</h2>
+                    <p>$29.99</p>
+                    <button onclick="addToCart('Men\'s Product 1', 29.99)">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="./image/men/2th.jpg" alt="Men's Product 1">
+                    <h2>Latest Men Wedding Suits</h2>
+                    <p>$29.99</p>
+                    <button onclick="addToCart('Men\'s Product 1', 29.99)">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="./image/men/3rd.JPG" alt="Men's Product 1">
+                    <h2>Exit Autumn Winter Formal Suits</h2>
+                    <p>$29.99</p>
+                    <button onclick="addToCart('Men\'s Product 1', 29.99)">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="./image/men/4th.jpg" alt="Men's Product 1">
+                    <h2>Men's Clothing decent Casual dress</h2>
+                    <p>$29.99</p>
+                    <button onclick="addToCart('Men\'s Product 1', 29.99)">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="./image/men/5th.jpg" alt="Men's Product 1">
+                    <h2>Engagement Dress For Men</h2>
+                    <p>$29.99</p>
+                    <button onclick="addToCart('Men\'s Product 1', 29.99)">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="./image/men/6th.jpg" alt="Men's Product 1">
+                    <h2>Wedding Sherwani</h2>
+                    <p>$29.99</p>
+                    <button onclick="addToCart('Men\'s Product 1', 29.99)">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="./image/men/7th.jpg" alt="Men's Product 1">
+                    <h2>Wedding Dresses Men</h2>
+                    <p>$29.99</p>
+                    <button onclick="addToCart('Men\'s Product 1', 29.99)">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="./image/men/8th.webp" alt="Men's Product 1">
+                    <h2>Beautiful Men's Wedding Dresses</h2>
+                    <p>$29.99</p>
+                    <button onclick="addToCart('Men\'s Product 1', 29.99)">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="./image/men/8th2.jpg" alt="Men's Product 1">
+                    <h2>Samyakk Black Silk Solid Jodhpuri Sherwani</h2>
+                    <p>$29.99</p>
+                    <button onclick="addToCart('Men\'s Product 1', 29.99)">Add to Cart</button>
+                </div>
+                <!-- Repeat for more men's products -->
+            </div>
+        </section>
+        
+        <section id="women" class="product-list">
+            <div class="container">
+                <!-- <h2>Women's Collection</h2> -->
+                <div class="product">
+                    <img src="./image/women/1th.jpeg" alt="Women's Product 1">
+                    <h2>Women's solid Evening Pleated Chiffon Dress</h2>
+                    <p>$39.99</p>
+                    <button onclick="addToCart('Women\'s Product 1', 39.99)">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="./image/women/2th.jpg" alt="Women's Product 1">
+                    <h2>White Prom Dresses -MagMent</h2>
+                    <p>$39.99</p>
+                    <button onclick="addToCart('Women\'s Product 1', 39.99)">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="./image/women/3rd.jpeg" alt="Women's Product 1">
+                    <h2>Women's Party night sexy Ruched bodycon mini dress</h2>
+                    <p>$39.99</p>
+                    <button onclick="addToCart('Women\'s Product 1', 39.99)">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="./image/women/4th1.jpeg" alt="Women's Product 1">
+                    <h2>Blue ball gown Prom</h2>
+                    <p>$39.99</p>
+                    <button onclick="addToCart('Women\'s Product 1', 39.99)">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="./image/women/5th.jpg" alt="Women's Product 1">
+                    <h2>Women's latest collections</h2>
+                    <p>$39.99</p>
+                    <button onclick="addToCart('Women\'s Product 1', 39.99)">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="./image/women/6th.jpg" alt="Women's Product 1">
+                    <h2>Embroidered silk saree</h2>
+                    <p>$39.99</p>
+                    <button onclick="addToCart('Women\'s Product 1', 39.99)">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="./image/women/7th.jpg" alt="Women's Product 1">
+                    <h2>Indian Saree</h2>
+                    <p>$39.99</p>
+                    <button onclick="addToCart('Women\'s Product 1', 39.99)">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="./image/women/8th.jpg" alt="Women's Product 1">
+                    <h2>Royal Blue Kurta set</h2>
+                    <p>$39.99</p>
+                    <button onclick="addToCart('Women\'s Product 1', 39.99)">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="./image/women/9th.jpeg" alt="Women's Product 1">
+                    <h2>Women Ladies Kurti Kurta Top</h2>
+                    <p>$39.99</p>
+                    <button onclick="addToCart('Women\'s Product 1', 39.99)">Add to Cart</button>
+                </div>
+                <!-- Repeat for more women's products -->
+            </div>
+        </section>
+        
+        <section id="kids" class="product-list">
+            <div class="container">
+                <!-- <h2>Kids' Collection</h2> -->
+                <div class="product">
+                    <img src="./image/kids/1th.webp" alt="Kids' Product 1">
+                    <h2>Ll - Littel Girl dresses </h2>
+                    <p>$19.99</p>
+                    <button onclick="addToCart('Kids\' Product 1', 19.99)">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="./image/kids/2nd.webp" alt="Kids' Product 1">
+                    <h2>PDYLZWZY - Toddler kids baby girls</h2>
+                    <p>$19.99</p>
+                    <button onclick="addToCart('Kids\' Product 1', 19.99)">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="./image/kids/3rd.jpg" alt="Kids' Product 1">
+                    <h2>Jewel Sleevess</h2>
+                    <p>$19.99</p>
+                    <button onclick="addToCart('Kids\' Product 1', 19.99)">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="./image/kids/4t.jpeg" alt="Kids' Product 1">
+                    <h2>Flower girls Dress Autumn Sleevess princess dress</h2>
+                    <p>$19.99</p>
+                    <button onclick="addToCart('Kids\' Product 1', 19.99)">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="./image/kids/5th.jpeg" alt="Kids' Product 1">
+                    <h2>Children Clothing Baby girls</h2>
+                    <p>$19.99</p>
+                    <button onclick="addToCart('Kids\' Product 1', 19.99)">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="./image/kids/6th.jpg" alt="Kids' Product 1">
+                    <h2>Sparkling fashion</h2>
+                    <p>$19.99</p>
+                    <button onclick="addToCart('Kids\' Product 1', 19.99)">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="./image/kids/7th.jpg" alt="Kids' Product 1">
+                    <h2>Couture Gentleman Formal Clothing Boy Weddings</h2>
+                    <p>$19.99</p>
+                    <button onclick="addToCart('Kids\' Product 1', 19.99)">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="./image/kids/8th.jpeg" alt="Kids' Product 1">
+                    <h2>Disney classics</h2>
+                    <p>$19.99</p>
+                    <button onclick="addToCart('Kids\' Product 1', 19.99)">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="./image/kids/9th.png" alt="Kids' Product 1">
+                    <h2>    Childrem Cloth </h2>
+                    <p>$19.99</p>
+                    <button onclick="addToCart('Kids\' Product 1', 19.99)">Add to Cart</button>
+                </div>
+                <!-- Repeat for more kids' products -->
+            </div>
+        </section>
+        
+    </main>
+     
+    <div class="footer">
+        <div class="content">
+          <div class="services">
+            <h4>Services</h4>
+            <p><a href="#">Shoping</a></p>
+            <p><a href="#">Mens</a></p>
+            <p><a href="#">Womens</a></p>
+            <p><a href="#">Kids</a></p>
+          </div>
+          <div class="social-media">
+            <h4>Social</h4>
+            <p>
+              <a href="#"
+                ><i class="fab fa-linkedin"></i> Linkedin</a
+              >
+            </p>
+            <p>
+              <a href="#"
+                ><i class="fab fa-twitter"></i> Twitter</a
+              >
+            </p>
+            <p>
+              <a href="#"
+                ><i class="fab fa-github"></i> Github</a
+              >
+            </p>
+            <p>
+              <a href="#"
+                ><i class="fab fa-facebook"></i> Facebook</a
+              >
+            </p>
+            <p>
+              <a href="#"
+                ><i class="fab fa-instagram"></i> Instagram</a
+              >
+            </p>
+          </div>
+          <div class="links">
+            <h4>Quick links</h4>
+            <p><a href="#home">Home</a></p>
+            <p><a href="#men">men</a></p>
+            <p><a href="#women">women</a></p>
+            <p><a href="#kid">kid</a></p>
+            <p><a href="contact.html">Contact</a></p>
+          </div>
+          <div class="details">
+            <h4 class="address">Address</h4>
+            <p>
+              Lorem ipsum dolor sit amet consectetur <br />
+              adipisicing elit. Cupiditate, qui!
+            </p>
+            <h4 class="mobile">Mobile</h4>
+            <p><a href="#">+91-XX*****XX</a></p>
+            <h4 class="mail">Email</h4>
+            <p><a href="#">rajverma@gmail.com</a></p>
+          </div>
+        </div>
+      </div>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #555;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        .checkout-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 8px 16px; /* Reduced padding */
+            background-color: #007BFF;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px; /* Adjust font size if needed */
+        }
+
+        .checkout-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .delete-btn {
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .delete-btn:hover {
+            background-color: #c82333;
+        }
+
+        @media (max-width: 768px) {
+            table, thead, tbody, th, td, tr {
+                display: block;
+                width: 100%;
+            }
+
+            th, td {
+                box-sizing: border-box;
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                padding: 10px;
+            }
+
+            th::before, td::before {
+                content: attr(data-label);
+                flex-basis: 50%;
+                text-align: left;
+                font-weight: bold;
+            }
+
+            th {
+                background-color: #f2f2f2;
+            }
+
+            tr {
+                margin-bottom: 10px;
+                border-bottom: 1px solid #ddd;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="index.html" class="logo">
+                            Clothing Store
+                        </a>
+                        <ul class="nav">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="index.html">Men</a></li>
+                            <li><a href="index.html">Women</a></li>
+                            <li><a href="index.html">Kids</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="login.html" class="btn">Login</a></li>
+                            <li><a href="reg.html" class="btn">Register</a></li>
+                            <li><a href="cart.html" onclick="showCart()" class="active">Cart <span id="cart-count"></span></a></li>
+                        </ul>
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>Shopping Cart</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Remove Item</th>
+                </tr>
+            </thead>
+            <tbody id="cart-items">
+                <!-- Cart items will be dynamically added here -->
+            </tbody>
+        </table>
+        <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+    </div>
+
+    <script>
+        window.onload = function() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartItemsContainer = document.getElementById("cart-items");
+            let total = 0;
+            cart.forEach((item, index) => {
+                total += item.price;
+                const newRow = document.createElement('tr');
+                newRow.innerHTML = `
+                    <td data-label="Product Name">${item.name}</td>
+                    <td data-label="Price">$${item.price.toFixed(2)}</td>
+                    <td data-label="Quantity">1</td>
+                    <td data-label="Total">$${item.price.toFixed(2)}</td>
+                    <td data-label="Remove Item"><button class="delete-btn" onclick="deleteItem(${index})">Delete</button></td>
+                `;
+                cartItemsContainer.appendChild(newRow);
+            });
+            const totalRow = document.createElement('tr');
+            totalRow.innerHTML = `
+                <td colspan="3"><strong>Total</strong></td>
+                <td colspan="2" data-label="Total">$${total.toFixed(2)}</td>
+            `;
+            cartItemsContainer.appendChild(totalRow);
+        }
+
+        function deleteItem(index) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.splice(index, 1); // Remove item from cart array
+            localStorage.setItem('cart', JSON.stringify(cart)); // Update localStorage
+            location.reload(); // Reload the page to reflect changes
+        }
+
+        function checkout() {
+            localStorage.removeItem('cart'); // Clear the cart in localStorage
+            window.location.href = 'order.html'; // Redirect to order.html
+        }
+    </script>
+
+</body>
+</html>
